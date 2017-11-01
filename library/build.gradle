@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+
+
+dependencies {
+    compile project(':third_party:gif_decoder')
+    compile project(':third_party:disklrucache')
+    compile project(':annotation')
+    provided "com.android.support:support-fragment:26.0.2"
+    provided "com.android.support:appcompat-v7:26.0.2"
+}
+
+android.testOptions.unitTests.all {
+    // configure max heap size of the test JVM
+    maxHeapSize = '2048m'
+    if (JavaVersion.current() <= JavaVersion.VERSION_1_7) {
+        // Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=2048m; support was removed in 8.0
+        jvmArgs '-XX:MaxPermSize=2048m'
+    }
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+
+        consumerProguardFiles 'proguard-rules.txt'
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}

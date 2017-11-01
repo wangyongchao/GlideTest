@@ -1,0 +1,2 @@
+D com/bumptech/glide/gifdecoder/GifDecoder$GifDecodeStatus
+D com/bumptech/glide/gifdecoder/GifFrame$GifDisposalMethod
