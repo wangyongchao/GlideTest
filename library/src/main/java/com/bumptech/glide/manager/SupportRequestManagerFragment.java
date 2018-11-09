@@ -152,6 +152,7 @@ public class SupportRequestManagerFragment extends Fragment {
   @Override
   public void onAttach(Context context) {
     super.onAttach(context);
+    System.out.println("SupportRequestManagerFragment onAttach");
     try {
       registerFragmentWithRoot(getActivity());
     } catch (IllegalStateException e) {
@@ -165,6 +166,7 @@ public class SupportRequestManagerFragment extends Fragment {
   @Override
   public void onDetach() {
     super.onDetach();
+    System.out.println("SupportRequestManagerFragment onDetach");
     parentFragmentHint = null;
     unregisterFragmentWithRoot();
   }
@@ -172,18 +174,21 @@ public class SupportRequestManagerFragment extends Fragment {
   @Override
   public void onStart() {
     super.onStart();
+    System.out.println("SupportRequestManagerFragment onStart");
     lifecycle.onStart();
   }
 
   @Override
   public void onStop() {
     super.onStop();
+    System.out.println("SupportRequestManagerFragment onStop");
     lifecycle.onStop();
   }
 
   @Override
   public void onDestroy() {
     super.onDestroy();
+    System.out.println("SupportRequestManagerFragment onDestroy");
     lifecycle.onDestroy();
     unregisterFragmentWithRoot();
   }

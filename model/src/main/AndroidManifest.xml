@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.glide.test.model">
+
+    <application>
+        <activity android:name="com.glide.test.model.ModelActivity"></activity>
+    </application>
+</manifest>

@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "D:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\wangy\\.android\\build-cache\\0f507988cbdb96c4d9271dc0e77c06796c52fd4f\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "E:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\wangyongchao\\.android\\build-cache\\5e715f69728cf718953525d1300110937819dba6\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "E:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\wangyongchao\\.android\\build-cache\\5e715f69728cf718953525d1300110937819dba6\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\wangy\\.android\\build-cache\\0f507988cbdb96c4d9271dc0e77c06796c52fd4f\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\wangy\\.android\\build-cache\\0f507988cbdb96c4d9271dc0e77c06796c52fd4f\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "E:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\wangyongchao\\.android\\build-cache\\5e715f69728cf718953525d1300110937819dba6\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\wangy\\.android\\build-cache\\0f507988cbdb96c4d9271dc0e77c06796c52fd4f\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "E:\\workspace\\GlideTest\\library\\build\\intermediates\\res\\merged\\release\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\wangyongchao\\.android\\build-cache\\5e715f69728cf718953525d1300110937819dba6\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    }
+]

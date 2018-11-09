@@ -8,7 +8,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/annotation" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/imagefetcher" />
+            <option value="$PROJECT_DIR$/javatest" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/model" />
+            <option value="$PROJECT_DIR$/third_party" />
+            <option value="$PROJECT_DIR$/third_party/disklrucache" />
+            <option value="$PROJECT_DIR$/third_party/gif_decoder" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

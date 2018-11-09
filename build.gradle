@@ -20,8 +20,13 @@ allprojects {
         mavenCentral()
         maven { url 'https://maven.google.com' }
     }
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = 1.7
+        targetCompatibility = 1.7
+    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

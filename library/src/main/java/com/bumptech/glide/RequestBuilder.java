@@ -31,7 +31,7 @@ import java.util.UUID;
  * @param <TranscodeType> The type of resource that will be delivered to the
  * {@link com.bumptech.glide.request.target.Target}.
  */
-public class RequestBuilder<TranscodeType> implements Cloneable {
+public class  RequestBuilder<TranscodeType> implements Cloneable {
   // Used in generated subclasses
   protected static final RequestOptions DOWNLOAD_ONLY_OPTIONS =
       new RequestOptions().diskCacheStrategy(DiskCacheStrategy.DATA).priority(Priority.LOW)

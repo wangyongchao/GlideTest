@@ -163,6 +163,7 @@ public class RequestManagerFragment extends Fragment {
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
+    System.out.println("RequestManagerFragment onAttach");
     try {
       registerFragmentWithRoot(activity);
     } catch (IllegalStateException e) {
@@ -176,24 +177,28 @@ public class RequestManagerFragment extends Fragment {
   @Override
   public void onDetach() {
     super.onDetach();
+    System.out.println("RequestManagerFragment onDetach");
     unregisterFragmentWithRoot();
   }
 
   @Override
   public void onStart() {
     super.onStart();
+    System.out.println("RequestManagerFragment onStart");
     lifecycle.onStart();
   }
 
   @Override
   public void onStop() {
     super.onStop();
+    System.out.println("RequestManagerFragment onStop");
     lifecycle.onStop();
   }
 
   @Override
   public void onDestroy() {
     super.onDestroy();
+    System.out.println("RequestManagerFragment onDestroy");
     lifecycle.onDestroy();
     unregisterFragmentWithRoot();
   }
