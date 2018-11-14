@@ -23,6 +23,7 @@ import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.glide.test.model.ModelActivity;
+import com.glide.test.testing.TestActivity;
 
 import java.util.concurrent.ExecutionException;
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.cancle) {
             Glide.with(this).clear(imageView);
         } else {
-            startActivity(new Intent(this, ModelActivity.class));
+            startActivity(new Intent(this, TestActivity.class));
 
         }
 
@@ -171,70 +172,70 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        //清楚加载目标
 //        Glide.with(this).clear(futureTarget);
 
-        requestBuilder.into(new SimpleTarget<Drawable>() {
-            @Override
-            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
-                System.out.println("currentThread=" + Thread.currentThread());
-            }
-        });
+//        requestBuilder.into(new SimpleTarget<Drawable>() {
+//            @Override
+//            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+//                System.out.println("currentThread=" + Thread.currentThread());
+//            }
+//        });
 
-        requestBuilder.into(new Target<Drawable>() {
-            @Override
-            public void onLoadStarted(@Nullable Drawable placeholder) {
-
-            }
-
-            @Override
-            public void onLoadFailed(@Nullable Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
-
-            }
-
-            @Override
-            public void onLoadCleared(@Nullable Drawable placeholder) {
-
-            }
-
-            @Override
-            public void getSize(SizeReadyCallback cb) {
-
-            }
-
-            @Override
-            public void removeCallback(SizeReadyCallback cb) {
-
-            }
-
-            @Override
-            public void setRequest(@Nullable Request request) {
-
-            }
-
-            @Nullable
-            @Override
-            public Request getRequest() {
-                return null;
-            }
-
-            @Override
-            public void onStart() {
-
-            }
-
-            @Override
-            public void onStop() {
-
-            }
-
-            @Override
-            public void onDestroy() {
-
-            }
-        });
+//        requestBuilder.into(new Target<Drawable>() {
+//            @Override
+//            public void onLoadStarted(@Nullable Drawable placeholder) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+//
+//            }
+//
+//            @Override
+//            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadCleared(@Nullable Drawable placeholder) {
+//
+//            }
+//
+//            @Override
+//            public void getSize(SizeReadyCallback cb) {
+//
+//            }
+//
+//            @Override
+//            public void removeCallback(SizeReadyCallback cb) {
+//
+//            }
+//
+//            @Override
+//            public void setRequest(@Nullable Request request) {
+//
+//            }
+//
+//            @Nullable
+//            @Override
+//            public Request getRequest() {
+//                return null;
+//            }
+//
+//            @Override
+//            public void onStart() {
+//
+//            }
+//
+//            @Override
+//            public void onStop() {
+//
+//            }
+//
+//            @Override
+//            public void onDestroy() {
+//
+//            }
+//        });
         requestBuilder.into(imageView);
 
     }
