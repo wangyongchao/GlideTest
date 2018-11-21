@@ -38,6 +38,7 @@ class ResourceCacheGenerator implements DataFetcherGenerator,
 
   @Override
   public boolean startNext() {
+    System.out.println("ResourceCacheGenerator startNext");
     List<Key> sourceIds = helper.getCacheKeys();
     if (sourceIds.isEmpty()) {
       return false;
@@ -76,6 +77,7 @@ class ResourceCacheGenerator implements DataFetcherGenerator,
               helper.getOptions());
       if (loadData != null && helper.hasLoadPath(loadData.fetcher.getDataClass())) {
         started = true;
+        System.out.println("ResourceCacheGenerator started");
         loadData.fetcher.loadData(helper.getPriority(), this);
       }
     }

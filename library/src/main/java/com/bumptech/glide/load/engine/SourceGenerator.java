@@ -39,6 +39,7 @@ class SourceGenerator implements DataFetcherGenerator,
 
   @Override
   public boolean startNext() {
+    System.out.println("SourceGenerator startNext");
     if (dataToCache != null) {
       Object data = dataToCache;
       dataToCache = null;
@@ -58,6 +59,7 @@ class SourceGenerator implements DataFetcherGenerator,
           && (helper.getDiskCacheStrategy().isDataCacheable(loadData.fetcher.getDataSource())
           || helper.hasLoadPath(loadData.fetcher.getDataClass()))) {
         started = true;
+        System.out.println("SourceGenerator started");
         loadData.fetcher.loadData(helper.getPriority(), this);
       }
     }

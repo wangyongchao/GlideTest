@@ -43,6 +43,7 @@ class DataCacheGenerator implements DataFetcherGenerator,
 
   @Override
   public boolean startNext() {
+    System.out.println("DataCacheGenerator startNext");
     while (modelLoaders == null || !hasNextModelLoader()) {
       sourceIdIndex++;
       if (sourceIdIndex >= cacheKeys.size()) {
@@ -68,6 +69,7 @@ class DataCacheGenerator implements DataFetcherGenerator,
               helper.getOptions());
       if (loadData != null && helper.hasLoadPath(loadData.fetcher.getDataClass())) {
         started = true;
+        System.out.println("DataCacheGenerator started");
         loadData.fetcher.loadData(helper.getPriority(), this);
       }
     }

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\workspace\GlideTest\third_party\gif_decoder\src\main\assets"/><source path="E:\workspace\GlideTest\third_party\gif_decoder\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\workspace\GlideTest\third_party\gif_decoder\src\debug\assets"/></dataSet></merger>
