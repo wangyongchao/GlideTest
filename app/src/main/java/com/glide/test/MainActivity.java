@@ -14,6 +14,7 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imageView;
     String url = "http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg";
     String thumbUrl = "http://dpic.tiankong.com/z9/sr/QJ9107571341.jpg?x-oss-process=style/670w";
+    String gifUrl = "http://www.gif5.net/img/images/2016/03/30/NWFXOTVZdUo1Ynk2NTVxRTZieVQ1bzZN.gif";
 
 
     @Override
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.cancle) {
             Glide.with(this).clear(imageView);
         } else {
-            startActivity(new Intent(this, TestActivity.class));
+            startActivity(new Intent(this, ModelActivity.class));
 
         }
 
@@ -151,9 +153,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void testTarget() {
         RequestManager requestManager = Glide.with(this);
-        RequestBuilder<Drawable> requestBuilder = requestManager.asDrawable();
-        requestBuilder.load(url).apply(RequestOptions.centerCropTransform())
-                .transition(withCrossFade());
+        RequestBuilder<GifDrawable> requestBuilder = requestManager.asGif();
+        requestBuilder.load(gifUrl).apply(RequestOptions.centerCropTransform())
+                .transition(withCrossFade()).listener(new RequestListener<GifDrawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean
+                    isFirstResource) {
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource
+                    dataSource, boolean isFirstResource) {
+                return false;
+            }
+        });
 //        final FutureTarget<Bitmap> futureTarget = requestBuilder.submit();
 //        new Thread(new Runnable() {
 //            @Override
@@ -182,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        requestBuilder.into(new Target<Drawable>() {
 //            @Override
 //            public void onLoadStarted(@Nullable Drawable placeholder) {
+//                System.out.println("onLoadStarted");
 //
 //            }
 //
@@ -192,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            @Override
 //            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
-//
+//                System.out.println("onResourceReady");
 //            }
 //
 //            @Override

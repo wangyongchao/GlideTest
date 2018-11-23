@@ -1,5 +1,6 @@
 package com.lib.imagefetcher.inter;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
@@ -73,6 +74,16 @@ public interface IFetcher {
      * @param imageView
      * @return
      */
-    public ITarget into(ImageView imageView);
+    public IFetcherTarget into(ImageView imageView);
+
+
+    /**
+     * 记载到自定义的target
+     *
+     * @param target
+     * @param <Y>
+     * @return
+     */
+    public <Y extends IFetcherTarget> Y into(@NonNull Y target);
 
 }
