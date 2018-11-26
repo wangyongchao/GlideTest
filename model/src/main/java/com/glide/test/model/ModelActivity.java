@@ -12,6 +12,7 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
     ImageView imageView;
     String url = "http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg";
     String thumbUrl = "http://dpic.tiankong.com/z9/sr/QJ9107571341.jpg?x-oss-process=style/670w";
+    private String gifUrl = "http://i1.mopimg.cn/img/tt/2014-11/404/20141127150921545.gif230x170.gif";
 
 
     @Override
@@ -38,7 +39,7 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void testNew() {
-        ImageFetcher.with(this).asDrawable().load(url).into(imageView);
+        ImageFetcher.with(this).asGif().load(gifUrl).into(imageView);
 
     }
 

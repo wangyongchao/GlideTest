@@ -14,7 +14,10 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.lib.imagefetcher.ImagePreconditions;
 import com.lib.imagefetcher.Utils;
 import com.lib.imagefetcher.adapter.target.BitmapImageViewTargetDecor;
@@ -36,7 +39,7 @@ public class GlideFetcher implements IFetcher {
     private RequestBuilder mRequestBuilder;
     private RequestOptions mRequestOptions = new RequestOptions();
     private Object model;
-    private Class resourceTypeClass;
+    private Class resourceTypeClass = Drawable.class;
 
 
     public GlideFetcher(Context context) {
@@ -70,24 +73,28 @@ public class GlideFetcher implements IFetcher {
     @Override
     public IFetcher asBitmap() {
         resourceTypeClass = Bitmap.class;
+        mRequestBuilder = mRequestManager.asBitmap();
         return this;
     }
 
     @Override
     public IFetcher asGif() {
         resourceTypeClass = GifDrawable.class;
+        mRequestBuilder = mRequestManager.asGif();
         return this;
     }
 
     @Override
     public IFetcher asDrawable() {
         resourceTypeClass = Drawable.class;
+        mRequestBuilder = mRequestManager.asDrawable();
         return this;
     }
 
     @Override
     public IFetcher asFile() {
         resourceTypeClass = File.class;
+        mRequestBuilder = mRequestManager.asFile();
         return this;
     }
 
@@ -105,14 +112,12 @@ public class GlideFetcher implements IFetcher {
 
 
     @Override
-    public IFetcherTarget into(ImageView imageView) {
+    public IFetcherTarget into(final ImageView imageView) {
         Utils.assertMainThread();
         ImagePreconditions.checkNotNull(imageView);
-        if (resourceTypeClass == null) {
-            resourceTypeClass = Drawable.class;
+        if (mRequestBuilder == null) {
+            mRequestBuilder = mRequestManager.asDrawable();
         }
-        mRequestBuilder = mRequestManager.as(resourceTypeClass);
-
         if (!mRequestOptions.isTransformationSet()
                 && mRequestOptions.isTransformationAllowed()
                 && imageView.getScaleType() != null) {
@@ -139,7 +144,7 @@ public class GlideFetcher implements IFetcher {
                 default:
             }
         }
-        mRequestBuilder.apply(mRequestOptions).load(model);
+
 
         ViewFetcherTarget viewFetcherTarget = null;
         Target target = null;
@@ -154,14 +159,15 @@ public class GlideFetcher implements IFetcher {
             throw new IllegalArgumentException(
                     "Unhandled class: " + resourceTypeClass + ", try .as*(Class).transcode(ResourceTranscoder)");
         }
-
+        mRequestBuilder.load(model).apply(mRequestOptions);
         mRequestBuilder.into(target);
-
         return viewFetcherTarget;
     }
 
     @Override
     public <Y extends IFetcherTarget> Y into(@NonNull Y target) {
+
+
 
 
         return null;

@@ -1,52 +1,126 @@
 package com.lib.imagefetcher.adapter.target;
 
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.request.target.BaseTarget;
-import com.bumptech.glide.request.target.ImageViewTargetFactory;
-import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.lib.imagefetcher.inter.IFetcherTarget;
-import com.lib.imagefetcher.target.ImageViewFetcherTarget;
 import com.lib.imagefetcher.target.ViewFetcherTarget;
 
 /**
- * Created by wangy on 2018/11/12.
+ * imageviewtarget包装
+ *
+ * @param <Z>
  */
+public abstract class ImageViewTargetDecor<Z> extends ViewTargetDecor<ImageView, Z>
+        implements Transition.ViewAdapter {
 
-public abstract class ImageViewTargetDecor<Z> extends ViewTargetDecor<ImageView, Z> {
-
+    @Nullable
+    private Animatable animatable;
 
     public ImageViewTargetDecor(ViewFetcherTarget target) {
         super(target);
     }
 
+    /**
+     * Returns the current {@link Drawable} being displayed in the view
+     * using {@link ImageView#getDrawable()}.
+     */
+    @Override
+    @Nullable
+    public Drawable getCurrentDrawable() {
+        return view.getDrawable();
+    }
+
+    /**
+     * Sets the given {@link Drawable} on the view using {@link
+     * ImageView#setImageDrawable(Drawable)}.
+     *
+     * @param drawable {@inheritDoc}
+     */
+    @Override
+    public void setDrawable(Drawable drawable) {
+        view.setImageDrawable(drawable);
+    }
+
+    /**
+     * Sets the given {@link Drawable} on the view using {@link
+     * ImageView#setImageDrawable(Drawable)}.
+     *
+     * @param placeholder {@inheritDoc}
+     */
     @Override
     public void onLoadStarted(@Nullable Drawable placeholder) {
         super.onLoadStarted(placeholder);
-        setResource(null);
+        setResourceInternal(null);
+        setDrawable(placeholder);
     }
 
-    @Override
-    public void onLoadCleared(Drawable placeholder) {
-        super.onLoadCleared(placeholder);
-        setResource(null);
-    }
-
+    /**
+     * Sets the given {@link Drawable} on the view using {@link
+     * ImageView#setImageDrawable(Drawable)}.
+     *
+     * @param errorDrawable {@inheritDoc}
+     */
     @Override
     public void onLoadFailed(@Nullable Drawable errorDrawable) {
         super.onLoadFailed(errorDrawable);
-        setResource(null);
+        setResourceInternal(null);
+        setDrawable(errorDrawable);
+    }
+
+    /**
+     * Sets the given {@link Drawable} on the view using {@link
+     * ImageView#setImageDrawable(Drawable)}.
+     *
+     * @param placeholder {@inheritDoc}
+     */
+    @Override
+    public void onLoadCleared(@Nullable Drawable placeholder) {
+        super.onLoadCleared(placeholder);
+        setResourceInternal(null);
+        setDrawable(placeholder);
     }
 
     @Override
-    public void onResourceReady(Z resource, Transition<? super Z> transition) {
+    public void onResourceReady(Z resource, @Nullable Transition<? super Z> transition) {
+        if (transition == null || !transition.transition(resource, this)) {
+            setResourceInternal(resource);
+        } else {
+            maybeUpdateAnimatable(resource);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        if (animatable != null) {
+            animatable.start();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        if (animatable != null) {
+            animatable.stop();
+        }
+    }
+
+    private void setResourceInternal(@Nullable Z resource) {
+        maybeUpdateAnimatable(resource);
         setResource(resource);
     }
 
-    protected abstract void setResource(@Nullable Z resource);
+    private void maybeUpdateAnimatable(@Nullable Z resource) {
+        if (resource instanceof Animatable) {
+            animatable = (Animatable) resource;
+            animatable.start();
+        } else {
+            animatable = null;
+        }
+    }
 
+    protected abstract void setResource(@Nullable Z resource);
 }
+

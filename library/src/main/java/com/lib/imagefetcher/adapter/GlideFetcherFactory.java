@@ -11,6 +11,7 @@ import com.lib.imagefetcher.inter.IFetcherFactory;
 
 /**
  * Created by wangyongchao on 2018/10/22.
+ * 工厂方法模式
  */
 
 public class GlideFetcherFactory implements IFetcherFactory {

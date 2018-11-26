@@ -19,6 +19,7 @@ import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imageView;
     String url = "http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg";
     String thumbUrl = "http://dpic.tiankong.com/z9/sr/QJ9107571341.jpg?x-oss-process=style/670w";
-    String gifUrl = "http://www.gif5.net/img/images/2016/03/30/NWFXOTVZdUo1Ynk2NTVxRTZieVQ1bzZN.gif";
+    private String gifUrl = "http://i1.mopimg.cn/img/tt/2014-11/404/20141127150921545.gif230x170.gif";
 
 
     @Override
@@ -153,21 +154,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void testTarget() {
         RequestManager requestManager = Glide.with(this);
-        RequestBuilder<GifDrawable> requestBuilder = requestManager.asGif();
-        requestBuilder.load(gifUrl).apply(RequestOptions.centerCropTransform())
-                .transition(withCrossFade()).listener(new RequestListener<GifDrawable>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean
-                    isFirstResource) {
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource
-                    dataSource, boolean isFirstResource) {
-                return false;
-            }
-        });
+        RequestBuilder<Drawable> requestBuilder = requestManager.asDrawable();
+        requestBuilder.load(url);
 //        final FutureTarget<Bitmap> futureTarget = requestBuilder.submit();
 //        new Thread(new Runnable() {
 //            @Override
@@ -189,11 +177,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        requestBuilder.into(new SimpleTarget<Drawable>() {
 //            @Override
 //            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
-//                System.out.println("currentThread=" + Thread.currentThread());
+//
 //            }
+//
 //        });
 
-//        requestBuilder.into(new Target<Drawable>() {
+        requestBuilder.into(new DrawableImageViewTarget(imageView));
+
+//        requestBuilder.into(new Target<GifDrawable>() {
 //            @Override
 //            public void onLoadStarted(@Nullable Drawable placeholder) {
 //                System.out.println("onLoadStarted");
@@ -202,11 +193,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            @Override
 //            public void onLoadFailed(@Nullable Drawable errorDrawable) {
-//
+//                System.out.println("onLoadFailed");
 //            }
 //
 //            @Override
-//            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+//            public void onResourceReady(GifDrawable resource, Transition<? super GifDrawable> transition) {
 //                System.out.println("onResourceReady");
 //            }
 //
@@ -251,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            }
 //        });
-        requestBuilder.into(imageView);
+//        requestBuilder.into(imageView);
 
     }
 
