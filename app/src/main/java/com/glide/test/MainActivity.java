@@ -34,6 +34,7 @@ import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView imageView;
+    ImageView imageView2;
     String url = "http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg";
     String thumbUrl = "http://dpic.tiankong.com/z9/sr/QJ9107571341.jpg?x-oss-process=style/670w";
     private String gifUrl = "http://i1.mopimg.cn/img/tt/2014-11/404/20141127150921545.gif230x170.gif";
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView = (ImageView) findViewById(R.id.imageView);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
         findViewById(R.id.display).setOnClickListener(this);
+        findViewById(R.id.display_other).setOnClickListener(this);
         findViewById(R.id.cancle).setOnClickListener(this);
         findViewById(R.id.start).setOnClickListener(this);
 
@@ -59,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             testTarget();
         } else if (id == R.id.cancle) {
             Glide.with(this).clear(imageView);
+        } else if (id == R.id.display_other) {
+           testOptions();
         } else {
             startActivity(new Intent(this, ModelActivity.class));
 
@@ -144,10 +149,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void testOptions() {
         Glide.with(this).
-                load(url).
+                load(thumbUrl).
                 apply(RequestOptions.centerCropTransform())
                 .transition(withCrossFade())
-                .into(imageView);
+                .into(imageView2);
 
     }
 
