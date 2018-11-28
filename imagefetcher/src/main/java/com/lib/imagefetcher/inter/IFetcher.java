@@ -78,7 +78,7 @@ public interface IFetcher {
 
 
     /**
-     * 记载到自定义的target
+     * 加载到自定义的target
      *
      * @param target
      * @param <Y>

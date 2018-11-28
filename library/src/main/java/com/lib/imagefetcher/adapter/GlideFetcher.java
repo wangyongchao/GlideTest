@@ -22,6 +22,7 @@ import com.lib.imagefetcher.ImagePreconditions;
 import com.lib.imagefetcher.Utils;
 import com.lib.imagefetcher.adapter.target.BitmapImageViewTargetDecor;
 import com.lib.imagefetcher.adapter.target.DrawableImageViewTargetDecor;
+import com.lib.imagefetcher.adapter.target.TargetProxy;
 import com.lib.imagefetcher.inter.IFetcher;
 import com.lib.imagefetcher.inter.IFetcherTarget;
 import com.lib.imagefetcher.target.BitmapImageViewFetcherTarget;
@@ -166,11 +167,13 @@ public class GlideFetcher implements IFetcher {
 
     @Override
     public <Y extends IFetcherTarget> Y into(@NonNull Y target) {
-
-
-
-
-        return null;
+        TargetProxy targetProxy = new TargetProxy(target);
+        if (mRequestBuilder == null) {
+            mRequestBuilder = mRequestManager.asDrawable();
+        }
+        mRequestBuilder.load(model).apply(mRequestOptions);
+        mRequestBuilder.into(targetProxy);
+        return target;
     }
 
 

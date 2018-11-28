@@ -10,6 +10,7 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.lib.imagefetcher.ImagePreconditions;
 import com.lib.imagefetcher.inter.IFetcherTarget;
+import com.lib.imagefetcher.inter.OnSizeReady;
 
 public class TargetProxy<Z> implements Target<Z> {
 
@@ -28,13 +29,19 @@ public class TargetProxy<Z> implements Target<Z> {
     }
 
     @Override
-    public void getSize(SizeReadyCallback cb) {
-
+    public void getSize(final SizeReadyCallback cb) {
+        iFetcherTarget.getSize(new OnSizeReady() {
+            @Override
+            public void onSizeReady(int width, int height) {
+                cb.onSizeReady(width, height);
+            }
+        });
 
     }
 
     @Override
     public void removeCallback(SizeReadyCallback cb) {
+
 
     }
 

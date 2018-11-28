@@ -155,7 +155,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void testTarget() {
         RequestManager requestManager = Glide.with(this);
         RequestBuilder<Drawable> requestBuilder = requestManager.asDrawable();
-        requestBuilder.load(url);
+        requestBuilder.load(url)
+                .apply(RequestOptions.centerCropTransform())
+                .transition(withCrossFade());
+        requestBuilder.listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean
+                    isFirstResource) {
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource
+                    dataSource, boolean isFirstResource) {
+                return false;
+            }
+        });
 //        final FutureTarget<Bitmap> futureTarget = requestBuilder.submit();
 //        new Thread(new Runnable() {
 //            @Override

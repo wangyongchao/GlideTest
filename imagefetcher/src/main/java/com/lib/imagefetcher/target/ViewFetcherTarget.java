@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.lib.imagefetcher.ImagePreconditions;
 import com.lib.imagefetcher.inter.IFetcherTarget;
+import com.lib.imagefetcher.inter.OnSizeReady;
 
 public abstract class ViewFetcherTarget<V extends View, Z> implements IFetcherTarget<Z> {
 
@@ -30,7 +31,7 @@ public abstract class ViewFetcherTarget<V extends View, Z> implements IFetcherTa
     }
 
     @Override
-    public void onLoadComplete(@Nullable Drawable drawable) {
+    public void getSize(OnSizeReady onSizeReady) {
 
     }
 
@@ -39,4 +40,13 @@ public abstract class ViewFetcherTarget<V extends View, Z> implements IFetcherTa
 
     }
 
+    @Override
+    public void onResourceReady(Z resource) {
+
+    }
+
+    @Override
+    public void removeCallback(OnSizeReady onSizeReady) {
+
+    }
 }
