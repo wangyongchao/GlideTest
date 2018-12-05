@@ -2,6 +2,7 @@ package com.lib.imagefetcher.inter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
 
 /**
@@ -22,6 +23,18 @@ public interface IFetcher {
      * 暂停所有请求
      */
     public void pauseRequests();
+
+    /**
+     * 恢复所有请求
+     */
+    public void resumeRequests();
+
+    /**
+     * 清楚请求
+     *
+     * @param view
+     */
+    public void clear(View view);
 
     /**
      * 以Bitmap的形式加载资源
@@ -85,5 +98,14 @@ public interface IFetcher {
      * @return
      */
     public <Y extends IFetcherTarget> Y into(@NonNull Y target);
+
+    /**
+     * 监听加载成功或失败
+     *
+     * @param listener
+     * @return
+     */
+    public IFetcher listener(ILoadListener listener);
+
 
 }

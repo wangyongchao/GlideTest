@@ -12,11 +12,11 @@ import com.lib.imagefetcher.ImagePreconditions;
 import com.lib.imagefetcher.inter.IFetcherTarget;
 import com.lib.imagefetcher.inter.OnSizeReady;
 
-public class TargetProxy<Z> implements Target<Z> {
+public class TargetDecor<Z> implements Target<Z> {
 
     private IFetcherTarget iFetcherTarget;
 
-    public TargetProxy(IFetcherTarget fetcherTarget) {
+    public TargetDecor(IFetcherTarget fetcherTarget) {
         this.iFetcherTarget = fetcherTarget;
         ImagePreconditions.checkNotNull(fetcherTarget);
     }

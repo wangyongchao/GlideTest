@@ -11,7 +11,7 @@ import com.bumptech.glide.util.Util;
  * Glide.load("http://somefakeurl.com/fakeImage.jpeg")
  *      .asBitmap()
  *      .withFitCenter()
- *      .into(new SimpleTarget<Bitmap>(250, 250) {
+ *      .into(new SimpleWrapperTarget<Bitmap>(250, 250) {
  *
  *          {@literal @Override}
  *          public void onResourceReady(Bitmap resource, GlideAnimation<Bitmap> glideAnimation) {

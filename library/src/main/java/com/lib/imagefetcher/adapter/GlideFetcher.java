@@ -14,17 +14,15 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.DrawableImageViewTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
 import com.lib.imagefetcher.ImagePreconditions;
 import com.lib.imagefetcher.Utils;
 import com.lib.imagefetcher.adapter.target.BitmapImageViewTargetDecor;
 import com.lib.imagefetcher.adapter.target.DrawableImageViewTargetDecor;
-import com.lib.imagefetcher.adapter.target.TargetProxy;
+import com.lib.imagefetcher.adapter.target.TargetDecor;
 import com.lib.imagefetcher.inter.IFetcher;
 import com.lib.imagefetcher.inter.IFetcherTarget;
+import com.lib.imagefetcher.inter.ILoadListener;
 import com.lib.imagefetcher.target.BitmapImageViewFetcherTarget;
 import com.lib.imagefetcher.target.DrawableImageViewFetcherTarget;
 import com.lib.imagefetcher.target.ViewFetcherTarget;
@@ -41,6 +39,7 @@ public class GlideFetcher implements IFetcher {
     private RequestOptions mRequestOptions = new RequestOptions();
     private Object model;
     private Class resourceTypeClass = Drawable.class;
+    private ILoadListener mLoadListener;
 
 
     public GlideFetcher(Context context) {
@@ -69,6 +68,17 @@ public class GlideFetcher implements IFetcher {
     @Override
     public void pauseRequests() {
         mRequestManager.pauseRequests();
+    }
+
+    @Override
+    public void resumeRequests() {
+        mRequestManager.resumeRequests();
+
+    }
+
+    @Override
+    public void clear(View view) {
+        mRequestManager.clear(view);
     }
 
     @Override
@@ -160,6 +170,9 @@ public class GlideFetcher implements IFetcher {
             throw new IllegalArgumentException(
                     "Unhandled class: " + resourceTypeClass + ", try .as*(Class).transcode(ResourceTranscoder)");
         }
+        if (mLoadListener != null) {
+            mRequestBuilder.listener(new GlideLoadListener(mLoadListener));
+        }
         mRequestBuilder.load(model).apply(mRequestOptions);
         mRequestBuilder.into(target);
         return viewFetcherTarget;
@@ -167,13 +180,22 @@ public class GlideFetcher implements IFetcher {
 
     @Override
     public <Y extends IFetcherTarget> Y into(@NonNull Y target) {
-        TargetProxy targetProxy = new TargetProxy(target);
+        TargetDecor targetProxy = new TargetDecor(target);
         if (mRequestBuilder == null) {
             mRequestBuilder = mRequestManager.asDrawable();
+        }
+        if (mLoadListener != null) {
+            mRequestBuilder.listener(new GlideLoadListener(mLoadListener));
         }
         mRequestBuilder.load(model).apply(mRequestOptions);
         mRequestBuilder.into(targetProxy);
         return target;
+    }
+
+    @Override
+    public IFetcher listener(ILoadListener listener) {
+        mLoadListener = listener;
+        return this;
     }
 
 

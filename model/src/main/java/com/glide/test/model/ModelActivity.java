@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.lib.imagefetcher.ImageFetcher;
+import com.lib.imagefetcher.LoadSource;
+import com.lib.imagefetcher.inter.IFetcherTarget;
+import com.lib.imagefetcher.inter.ILoadListener;
 
 
 public class ModelActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,7 +42,20 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void testNew() {
-        ImageFetcher.with(this).asGif().load(gifUrl).into(imageView);
+        ImageFetcher.with(this).asDrawable().load(url).listener(new ILoadListener() {
+            @Override
+            public boolean onLoadFailed(Object model, IFetcherTarget target, boolean isFirstResource) {
+                System.out.println("onLoadFailed model="+model);
+                return false;
+            }
+
+            @Override
+            public boolean onLoadSuccess(Object resource, Object model, IFetcherTarget target, LoadSource loadSource,
+                                         boolean isFirstResource) {
+                System.out.println("onLoadSuccess model="+model);
+                return false;
+            }
+        }).into(imageView);
 
     }
 
@@ -62,7 +78,7 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
 //            }
 //
 //            @Override
-//            public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource
+//            public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, LoadSource
 //                    dataSource, boolean isFirstResource) {
 //                return false;
 //            }

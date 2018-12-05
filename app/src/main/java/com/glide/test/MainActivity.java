@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.cancle) {
             Glide.with(this).clear(imageView);
         } else if (id == R.id.display_other) {
-           testOptions();
+            testOptions();
         } else {
             startActivity(new Intent(this, ModelActivity.class));
 
@@ -167,12 +167,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean
                     isFirstResource) {
+                System.out.println("model=" + model + ",target=" + target + ",isFirstResource=" + isFirstResource);
                 return false;
             }
 
             @Override
             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource
                     dataSource, boolean isFirstResource) {
+                System.out.println("resource=" + resource + ",model=" + model + ",target=" + target + ",dataSource="
+                        + dataSource + ",isFirstResource=" + isFirstResource);
                 return false;
             }
         });
@@ -194,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        //清楚加载目标
 //        Glide.with(this).clear(futureTarget);
 
-//        requestBuilder.into(new SimpleTarget<Drawable>() {
+//        requestBuilder.into(new SimpleWrapperTarget<Drawable>() {
 //            @Override
 //            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
 //
