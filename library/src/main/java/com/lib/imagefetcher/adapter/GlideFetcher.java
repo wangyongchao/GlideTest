@@ -180,7 +180,7 @@ public class GlideFetcher implements IFetcher {
 
     @Override
     public <Y extends IFetcherTarget> Y into(@NonNull Y target) {
-        TargetDecor targetProxy = new TargetDecor(target);
+        TargetDecor targetDecor = new TargetDecor(target);
         if (mRequestBuilder == null) {
             mRequestBuilder = mRequestManager.asDrawable();
         }
@@ -188,7 +188,7 @@ public class GlideFetcher implements IFetcher {
             mRequestBuilder.listener(new GlideLoadListener(mLoadListener));
         }
         mRequestBuilder.load(model).apply(mRequestOptions);
-        mRequestBuilder.into(targetProxy);
+        mRequestBuilder.into(targetDecor);
         return target;
     }
 

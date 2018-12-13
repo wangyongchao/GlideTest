@@ -16,9 +16,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 
 public class CustomExecutor extends ThreadPoolExecutor {
-    public CustomExecutor(int i, int i1, long l, TimeUnit timeUnit, BlockingQueue<Runnable> blockingQueue,
+    public CustomExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit timeUnit,
+                          BlockingQueue<Runnable> blockingQueue,
                           ThreadFactory threadFactory, RejectedExecutionHandler rejectedExecutionHandler) {
-        super(i, i1, l, timeUnit, blockingQueue, threadFactory, rejectedExecutionHandler);
+        super(corePoolSize, maximumPoolSize, keepAliveTime, timeUnit, blockingQueue, threadFactory,
+                rejectedExecutionHandler);
     }
 
 

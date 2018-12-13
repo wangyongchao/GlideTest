@@ -1,5 +1,6 @@
 package com.glide.test.model;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 
 import com.lib.imagefetcher.ImageFetcher;
 import com.lib.imagefetcher.LoadSource;
+import com.lib.imagefetcher.Utils;
 import com.lib.imagefetcher.inter.IFetcherTarget;
 import com.lib.imagefetcher.inter.ILoadListener;
 
@@ -37,6 +39,17 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
             testNew();
         } else {
 //            Glide.with(this).clear(imageView);
+            Utils.check(new Utils.OnFileSuccess() {
+                @Override
+                public void onFileSuccess() {
+                    gifUrl.toString();
+                }
+
+                @Override
+                public void onFileFail() {
+
+                }
+            });
         }
 
     }
@@ -45,14 +58,14 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
         ImageFetcher.with(this).asDrawable().load(url).listener(new ILoadListener() {
             @Override
             public boolean onLoadFailed(Object model, IFetcherTarget target, boolean isFirstResource) {
-                System.out.println("onLoadFailed model="+model);
+                System.out.println("onLoadFailed model=" + model);
                 return false;
             }
 
             @Override
             public boolean onLoadSuccess(Object resource, Object model, IFetcherTarget target, LoadSource loadSource,
                                          boolean isFirstResource) {
-                System.out.println("onLoadSuccess model="+model);
+                System.out.println("onLoadSuccess model=" + model);
                 return false;
             }
         }).into(imageView);
@@ -89,4 +102,9 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
 //    }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy");
+    }
 }

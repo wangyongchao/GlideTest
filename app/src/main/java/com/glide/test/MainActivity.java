@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
@@ -158,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void testTarget() {
+
         RequestManager requestManager = Glide.with(this);
         RequestBuilder<Drawable> requestBuilder = requestManager.asDrawable();
         requestBuilder.load(url)

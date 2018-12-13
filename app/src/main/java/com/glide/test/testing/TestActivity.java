@@ -26,16 +26,16 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-//        customExecutor = new CustomExecutor(0, Integer.MAX_VALUE, 10,
-//                TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new CustomExecutor.CustomThreadFactory(),
-//                new CustomExecutor.CustomRejectedExecutionHandler());
+        customExecutor = new CustomExecutor(1, 5, 10,
+                TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new CustomExecutor.CustomThreadFactory(),
+                new CustomExecutor.CustomRejectedExecutionHandler());
 //        executorService = Executors.newCachedThreadPool(new CustomExecutor.CustomThreadFactory());
-        customExecutor = GlideExecutor.newSourceExecutor();
+//        customExecutor = GlideExecutor.newSourceExecutor();
         this.findViewById(R.id.test1).setOnClickListener(this);
 
     }
 
-    class MyRunnable implements Runnable ,Comparable{
+    class MyRunnable implements Runnable, Comparable {
         private int num;
 
         public MyRunnable(int num) {
