@@ -20,29 +20,4 @@ public class Utils {
     }
 
 
-    private static OnFileSuccess onFileSuccess;
-
-    public static void check(OnFileSuccess fileSuccess) {
-        Utils.onFileSuccess = fileSuccess;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                    Utils.onFileSuccess.onFileSuccess();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    public static interface OnFileSuccess {
-        /**
-         * 模型初始化成功
-         */
-        void onFileSuccess();
-
-        void onFileFail();
-    }
 }

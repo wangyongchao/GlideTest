@@ -26,7 +26,7 @@ import java.util.List;
 
 public abstract class ViewTargetDecor<V extends View, Z> extends ViewTarget<V, Z> {
 
-    private ViewFetcherTarget<V, Z> mTarget;
+    protected ViewFetcherTarget<V, Z> mTarget;
 
     public ViewTargetDecor(ViewFetcherTarget<V, Z> target) {
         super(target.getView());

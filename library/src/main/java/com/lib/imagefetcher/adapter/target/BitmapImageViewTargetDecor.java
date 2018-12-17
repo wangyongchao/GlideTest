@@ -1,6 +1,7 @@
 package com.lib.imagefetcher.adapter.target;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
@@ -23,5 +24,12 @@ public class BitmapImageViewTargetDecor extends ImageViewTargetDecor<Bitmap> {
     @Override
     public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
         super.onResourceReady(resource, transition);
+        mTarget.onResourceReady(resource);
+    }
+
+    @Override
+    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+        super.onLoadFailed(errorDrawable);
+        mTarget.onLoadFailed(errorDrawable);
     }
 }

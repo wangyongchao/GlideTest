@@ -38,18 +38,6 @@ public class ModelActivity extends AppCompatActivity implements View.OnClickList
         if (id == R.id.display) {
             testNew();
         } else {
-//            Glide.with(this).clear(imageView);
-            Utils.check(new Utils.OnFileSuccess() {
-                @Override
-                public void onFileSuccess() {
-                    gifUrl.toString();
-                }
-
-                @Override
-                public void onFileFail() {
-
-                }
-            });
         }
 
     }

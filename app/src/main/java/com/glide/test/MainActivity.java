@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.display_other) {
             testOptions();
         } else {
-            startActivity(new Intent(this, TestActivity.class));
+            startActivity(new Intent(this, ModelActivity.class));
 
         }
 
