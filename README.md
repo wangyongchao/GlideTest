@@ -80,6 +80,26 @@ ThreadPoolExecutor(int 1,int 1,long keepAliveTime,TimeUnit unit,
 diskcache创建了一个固定线程池，线程池只有一个线程，顺序执行。
 2.MemorySizeCalculator
 根据手机设备信息智能计算缓存的大小。
+
 AndroidO也就是8.0 26以后，Bitmap的像素数据是存放在native内存当中，对象存放在java heap当中。
-arrayPool 4M
+
+int screenSize = widthPixels * heightPixels * BYTES_PER_ARGB_8888_PIXEL;
+
+总的内存大小max:int memoryclass=activityManager.getMemoryClass();获取当前程序分配的内存大小，如果是低内存设备分配1/3,
+否则程分配当前内存的1/4。
+
+
+arrayPool: 4M
+
+bitmapPool: Anroid O以下的，screenSize*4,Android O以上由于bitmap像素数据保存在native中，所以大小为
+screenSize,也就是说O以下的版本是O以上的版本的4倍。
+
+MemoryCache:screenSize*2
+
+可用内存大小为avliable=max-arrayPool,如果可用内存大小为avliable<bitmapPool+MemoryCache,则按照比例分摊.
+
+
+
+
+
 

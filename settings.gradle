@@ -1,1 +1,1 @@
-include ':app', ':third_party:gif_decoder', ':third_party:disklrucache', ':annotation', ':library', ':model', ':imagefetcher', ':javatest'
+include ':app', ':third_party:gif_decoder', ':third_party:disklrucache', ':annotation', ':library', ':model', ':imagefetcher', ':javatest', ':imagefetcher_annotation'

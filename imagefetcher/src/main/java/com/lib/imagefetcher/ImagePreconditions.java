@@ -1,9 +1,11 @@
 package com.lib.imagefetcher;
 
+import com.lib.imagefetcher.annotiaon.Export;
+
 /**
  * Created by wangyongchao on 2018/10/19.
  */
-
+@Export
 public class ImagePreconditions {
 
     private ImagePreconditions() {

@@ -5,10 +5,12 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.lib.imagefetcher.annotiaon.Export;
+
 /**
  * Created by wangyongchao on 2018/10/19.
  */
-
+@Export
 public interface IFetcher {
 
     /**

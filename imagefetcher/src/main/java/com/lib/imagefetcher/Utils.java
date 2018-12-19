@@ -2,6 +2,9 @@ package com.lib.imagefetcher;
 
 import android.os.Looper;
 
+import com.lib.imagefetcher.annotiaon.Export;
+
+@Export
 public class Utils {
     /**
      * 不是在主线程调用，抛出异常

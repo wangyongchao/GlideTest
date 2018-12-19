@@ -1,12 +1,13 @@
 package com.lib.imagefetcher;
 
+import com.lib.imagefetcher.annotiaon.Export;
 import com.lib.imagefetcher.inter.IFetcherFactory;
 
 /**
  * Created by wangyongchao on 2018/10/19.
  * 图片全局配置类
  */
-
+@Export
 public final class ImageConfiguration {
 
     private IFetcherFactory fetcherFactory;

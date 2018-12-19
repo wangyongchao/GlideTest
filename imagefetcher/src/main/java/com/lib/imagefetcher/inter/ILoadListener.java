@@ -3,10 +3,12 @@ package com.lib.imagefetcher.inter;
 import android.support.annotation.Nullable;
 
 import com.lib.imagefetcher.LoadSource;
+import com.lib.imagefetcher.annotiaon.Export;
 
 /**
  * 加载完成回调
  */
+@Export
 public interface ILoadListener<R> {
 
     /**

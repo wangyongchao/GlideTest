@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
+import com.lib.imagefetcher.annotiaon.Export;
 import com.lib.imagefetcher.inter.IFetcher;
 import com.lib.imagefetcher.inter.IFetcherFactory;
 
@@ -14,7 +15,7 @@ import com.lib.imagefetcher.inter.IFetcherFactory;
  * Created by wangyongchao on 2018/10/19.
  * 加载图片的入口
  */
-
+@Export
 public class ImageFetcher {
 
     private final static ImageConfiguration IMAGE_CONFIGURATION = new ImageConfiguration();

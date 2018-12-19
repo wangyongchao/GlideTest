@@ -1,8 +1,11 @@
 package com.lib.imagefetcher;
 
+import com.lib.imagefetcher.annotiaon.Export;
+
 /**
  * Indicates the origin of some retrieved data.
  */
+@Export
 public enum LoadSource {
   /**
    * Indicates data was probably retrieved locally from the device, although it may have been

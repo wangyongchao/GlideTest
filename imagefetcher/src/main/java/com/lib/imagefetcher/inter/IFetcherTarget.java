@@ -3,11 +3,14 @@ package com.lib.imagefetcher.inter;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 
+import com.lib.imagefetcher.annotiaon.Export;
+
 /**
  * 加载目标资源接口
  *
  * @param <Z>
  */
+@Export
 public interface IFetcherTarget<Z> {
 
     int SIZE_ORIGINAL = Integer.MIN_VALUE;

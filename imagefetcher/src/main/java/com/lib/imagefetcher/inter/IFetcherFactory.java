@@ -6,11 +6,13 @@ import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
+import com.lib.imagefetcher.annotiaon.Export;
+
 /**
  * Created by wangyongchao on 2018/10/19.
  * 创建fetcher的抽象工厂类
  */
-
+@Export
 public interface IFetcherFactory {
 
     IFetcher createFetcher(Context context);
