@@ -198,5 +198,11 @@ public class GlideFetcher implements IFetcher {
         return this;
     }
 
+    @Override
+    public IFetcher placeholderOf(@Nullable Drawable placeholder) {
+        mRequestOptions.placeholder(placeholder);
+        return this;
+    }
+
 
 }
